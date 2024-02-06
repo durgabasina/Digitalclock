@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="C:\Users\USER\Downloads\time.png">
+        <title>DigitalClock</title>
+        <style>
+
+            body{
+                background-color:rgb(0, 187, 255);
+            }
+            #digitalclock{
+                position:absolute;
+                top:50%;
+                left:50%;
+                transform:translate(-50%,-50%);
+            }
+            .clock{
+            color:white;
+            font-size:60px;
+            }
+
+                  /*  Mobile Device  */
+
+            @media screen and (max-width:600px) {
+                *{
+                    margin:0;
+                    padding:0;
+                    box-sizing:border-box;
+                }
+                body{
+                   background-color:black;
+                }
+                #digitalclock{
+                    display:grid;
+                    place-items:center;
+                    width:300px;
+                    height:100vh;
+                }
+                .clock{
+                    font-size:small;
+                }
+
+
+            }
+        </style>
+
+    </head>
+    <body>
+        <div id="digitalclock" class="clock"></div>
+        <script>
+
+            function showtime() {
+                
+                var date= new Date();
+                var h =date.getHours(); 
+                var m =date.getMinutes();
+                var s =date.getSeconds();       
+                var session ="PM";
+                
+
+            if(h==0){
+                h=12;  
+            }        // 12 hour format
+             
+            if(h>12){       // 13-12 = 1
+                h=h-12;     // 12 hour format
+            }
+            if(h>=12){
+                session="PM";
+            }
+
+            // if(h<10){      // 0 to 9
+            //     h="0"+h;
+            // }
+            // if(m<10){
+            //     m="0"+m;
+            // }
+            // if(s<10){
+            //     s="0"+s;
+            // }
+
+             // Two Digits of time //
+             
+                  h = (h<10)?"0"+h:h;  
+                  m = (m<10)?"0"+m:m;
+                  s = (s<10)?"0"+s:s;
+
+            
+
+            document.getElementById("digitalclock").innerHTML= h + ":"+ m + ":" + s + " " + session;
+
+            setTimeout(showtime,1000);   // Reload this function every second....
+ 
+        }
+
+        showtime();
+
+        </script>
+    </body>
+</html>
